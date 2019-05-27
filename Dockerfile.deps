@@ -1,0 +1,6 @@
+FROM registry.gitlab.com/tokenmill/clojure:1 as builder
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY deps.edn /usr/src/app/
+RUN clojure -R:test:dev:kibit:eastwood

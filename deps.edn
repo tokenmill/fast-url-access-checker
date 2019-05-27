@@ -1,0 +1,22 @@
+{:deps      {org.clojure/clojure            {:mvn/version "1.10.0"}
+             org.clojure/tools.logging      {:mvn/version "0.4.1"}
+             org.clojure/data.csv           {:mvn/version "0.1.4"}
+             ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
+             http-kit/http-kit              {:mvn/version "2.3.0"}
+             clojurewerkz/urly              {:mvn/version "1.0.0"}
+             cheshire                       {:mvn/version "5.8.1"}}
+ :paths     ["src"]
+ :mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
+             "clojars" {:url "https://repo.clojars.org/"}}
+ :aliases   {:test     {:extra-paths ["test"]
+                        :extra-deps  {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                                 :sha     "028a6d41ac9ac5d5c405dfc38e4da6b4cc1255d5"}}
+                        :main-opts   ["-m" "cognitect.test-runner"]}
+             :dev      {:extra-paths ["dev"]}
+             :kibit    {:extra-deps {jonase/kibit {:mvn/version "0.1.6"}}
+                        :main-opts  ["-e" "(require,'[kibit.driver,:as,k])(k/external-run,[\"src\"],nil)"]}
+             :eastwood {:main-opts  ["-m" "eastwood.lint" "{:source-paths,[\"src\"]}"]
+                        :extra-deps {jonase/eastwood {:mvn/version "RELEASE"}}}
+             :uberjar  {:extra-deps {luchiniatwork/cambada {:mvn/version "1.0.0"}}
+                        :main-opts  ["-m" "cambada.uberjar"
+                                     "-m" "fast_url_check.java"]}}}
