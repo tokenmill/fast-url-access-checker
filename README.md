@@ -15,7 +15,31 @@ It is a Clojure library. Interface to call it natively from Java is provided. A 
 
 # How to Use
 
-The library can be included as a dependency via maven, lein, deps.edn
+## Command Line
+
+URL checker can be executed via command line provided you have [Clojure](https://clojure.org/guides/getting_started) intalled. Execution example with project's test url set:
+
+```
+clojure -m fast-url-check.core test/resources/bulk-test.txt
+```
+
+Or via project's Makefile
+
+```
+make check-urls file-name=test/resources/bulk-test.txt
+```
+
+This will result in CSV formated output of URL checking results
+
+```
+timestamp,seed,url,status,status-type,response-time,exception
+2019-05-30T10:43:47.674Z,cameron.slb.com,https://www.products.slb.com,302,redirect,431,
+2019-05-30T10:43:47.691Z,co.williams.com,https://co.williams.com/,200,accessible,622,
+2019-05-30T10:43:47.691Z,company.ingersollrand.com,https://www.company.ingersollrand.com/,200,accessible,645,
+...
+2019-05-30T10:43:51.950Z,http://aes.com,https://aes.com/,200,accessible,3632,
+```
+
 
 ## Clojure
 
