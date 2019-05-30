@@ -23,4 +23,4 @@ lint-and-unit-test:
   script:
     - clojure -A:kibit
     - clojure -A:eastwood
-    - clojure -A:test
+    - clojure -A:test -e integration
