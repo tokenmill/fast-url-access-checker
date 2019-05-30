@@ -85,7 +85,7 @@ public class MyClass {
 
 # Benchmark
 
-This tool aims to provide top performance in bulk URL checking. This repository includes a reference set (test/resources/bulk-test.txt) of 1000 URLs for consistent performance checking. 
+This tool aims to provide top performance in bulk URL checking. This repository includes a [reference set](https://github.com/tokenmill/fast-url-access-checker/blob/master/test/resources/bulk-test.txt) of 1000 URLs for consistent performance checking. 
 
 Benchmark test executed against the reference URL set performs with average _0.3 seconds per URL_. Execution times are subject to the network conditions and hardware the tests are executed on.
 
