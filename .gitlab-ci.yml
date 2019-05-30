@@ -1,0 +1,26 @@
+stages:
+  - deps
+  - test
+
+update-deps:
+  stage: deps
+  image: docker:stable
+  only:
+    changes:
+      - deps.edn
+      - Dockerfile.deps
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - docker build -f Dockerfile.deps -t registry.gitlab.com/tokenmill/crawl/fast-url-access-checker:deps .
+    - docker push registry.gitlab.com/tokenmill/crawl/fast-url-access-checker:deps
+    - docker rmi registry.gitlab.com/tokenmill/crawl/fast-url-access-checker:deps
+
+lint-and-unit-test:
+  stage: test
+  when: always
+  image: registry.gitlab.com/tokenmill/crawl/fast-url-access-checker:deps
+  script:
+    - clojure -A:kibit
+    - clojure -A:eastwood
+    - clojure -A:test
