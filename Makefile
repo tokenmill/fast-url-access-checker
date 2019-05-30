@@ -16,3 +16,9 @@ check-urls:
 
 benchmark:
 	clojure -A:dev -m fast-url-check.benchmark $(file-name)
+
+build-graal-url-checker:
+	docker build --target builder -f Dockerfile -t fast-url-checker .
+	docker rm build || true
+	docker create --name build fast-url-checker
+	docker cp build:/usr/src/app/url-checker url-checker
