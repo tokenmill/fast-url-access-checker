@@ -22,3 +22,4 @@ build-graal-url-checker:
 	docker rm build || true
 	docker create --name build fast-url-checker
 	docker cp build:/usr/src/app/url-checker url-checker
+	docker cp build:/usr/src/app/libsunec.so libsunec.so

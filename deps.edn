@@ -17,6 +17,19 @@
                         :main-opts  ["-e" "(require,'[kibit.driver,:as,k])(k/external-run,[\"src\"],nil)"]}
              :eastwood {:main-opts  ["-m" "eastwood.lint" "{:source-paths,[\"src\"]}"]
                         :extra-deps {jonase/eastwood {:mvn/version "RELEASE"}}}
-             :uberjar  {:extra-deps {luchiniatwork/cambada {:mvn/version "1.0.0"}}
+             :uberjar  {:extra-deps {luchiniatwork/cambada {:git/url    "https://github.com/xfthhxk/cambada"
+                                                            :sha        "8fdc7d29a41620ad3e9e6210fd7140f3a4c7936b"
+                                                            :exclusions [org.slf4j/slf4j-nop]}}
                         :main-opts  ["-m" "cambada.uberjar"
-                                     "-m" "fast_url_check.java"]}}}
+                                     "-m" "fast_url_check.java"]}
+             :native-image
+                       {:extra-deps {luchiniatwork/cambada {:git/url "https://github.com/xfthhxk/cambada"
+                                                            :sha     "8fdc7d29a41620ad3e9e6210fd7140f3a4c7936b"
+                                                            :exclusions [org.slf4j/slf4j-nop]}}
+                        :main-opts  ["-m" "cambada.native-image"
+                                     "-m" "fast_url_check.core"
+                                     "-a" "fast-url-check.core"
+                                     "-O" "-initialize-at-build-time"
+                                     "-O" "-enable-all-security-services"
+                                     "-O" "-initialize-at-run-time=org.httpkit.client.SslContextFactory"
+                                     "-O" "-initialize-at-run-time=org.httpkit.client.HttpClient"]}}}

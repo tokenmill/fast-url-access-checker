@@ -1,4 +1,5 @@
 (ns fast-url-check.core
+  (:gen-class)
   (:require [clojure.tools.logging :as log]
             [org.httpkit.client :as http]
             [clojure.string :as s]
@@ -71,8 +72,8 @@
       (merge default-opts opts {:url url :method :head})
       (fn [{:keys [status headers error]}]
         (let [redirect-url (get headers :location "")
-              status-type (some-> status (str) (first) (Character/getNumericValue))
-              exception (some-> error (.getMessage) (remove-url-in-error-message url))]
+              status-type (some-> status (str) ^Character (first) (Character/getNumericValue))
+              exception (some-> ^Exception error (.getMessage) (remove-url-in-error-message url))]
           (merge {:url           url
                   :seed          seed
                   :status        status
@@ -131,4 +132,5 @@
     (doseq [{:keys [url seed status status-type response-time exception]}
             (check-access-bulk (line-seq rdr) :opts (json/decode opts true))]
       (csv/write-csv *out* [[(Instant/now) seed url status (name status-type) response-time exception]])
-      (flush))))
+      (flush)))
+  (shutdown-agents))

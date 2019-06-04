@@ -2,7 +2,7 @@
 
 This tool will take a list URLs of the sites, identify a correct form of the URL and run HTTP GET request against the URL to check its HTTP status. In cases where the address is not completely specified - a protocol is missing, 'www' part is not included when it is needed - a correct form of the URL will be identified. The library will also validate the correctness of the URL and in cases of redirection will return a target URL.
 
-It is a Clojure library. Interface to call it natively from Java is provided. A native binary distribution to be used as a command line tool will be provided in the next release.
+It is a Clojure library. Additionaly an interface to call it from Java is provided. As well as native binary distribution to be used as a command line tool.
 
 # Features
 
@@ -17,7 +17,15 @@ It is a Clojure library. Interface to call it natively from Java is provided. A 
 
 ## Command Line
 
-URL checker can be executed via command line provided you have [Clojure](https://clojure.org/guides/getting_started) intalled. Execution example with project's test url set:
+Use URL checker can be started from the command line with the following instruction
+```
+./url-checker test/resources/bulk-test.txt
+```
+
+See bellow for the output sample.
+
+
+URL checker can be executed via command line using  intalled [Clojure](https://clojure.org/) tools. Execution example with project's test url set:
 
 ```
 clojure -m fast-url-check.core test/resources/bulk-test.txt
