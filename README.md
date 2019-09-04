@@ -1,3 +1,7 @@
+<a href="http://www.tokenmill.lt">
+      <img src=".github/tokenmill-logo.svg" width="125" height="125" align="right" />
+</a>
+
 # URL Access Checker
 
 This tool will take a list URLs of the sites, identify a correct form of the URL and run HTTP GET request against the URL to check its HTTP status. In cases where the address is not completely specified - a protocol is missing, 'www' part is not included when it is needed - a correct form of the URL will be identified. The library will also validate the correctness of the URL and in cases of redirection will return a target URL.
@@ -123,6 +127,8 @@ Benchmark test executed against the reference URL set performs with average _0.3
 
 Benchmark test can be launched with `make benchmark`
 
-# Licensing
+## License
 
-Distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+Copyright &copy; 2019 [TokenMill UAB](http://www.tokenmill.lt).
+
+Distributed under the The Apache License, Version 2.0.
